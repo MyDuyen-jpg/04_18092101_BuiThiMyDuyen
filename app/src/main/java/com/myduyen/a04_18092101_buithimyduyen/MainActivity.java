@@ -190,15 +190,15 @@ public class MainActivity extends AppCompatActivity {
         stopService(intent);
     }
 
-    //    private void sendActiontoServie(int action, Song song){
-////        Toast.makeText(this, "aaaaaaaaa", Toast.LENGTH_SHORT).show();
-//        Intent intent = new Intent(MainActivity.this, MyService.class);
-//        //lợi dụng hàm bài trước
-//        intent.putExtra("action_music_service", action);
-//        intent.putExtra("object_song",song);
-//        startService(intent);
-////        Toast.makeText(this, "bbbbbbbbbb", Toast.LENGTH_SHORT).show();
-//    }
+        private void sendActiontoServie(int action, Song song){
+//        Toast.makeText(this, "aaaaaaaaa", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, MyService.class);
+        //lợi dụng hàm bài trước
+        intent.putExtra("action_music_service", action);
+        intent.putExtra("object_song",song);
+        startService(intent);
+//        Toast.makeText(this, "bbbbbbbbbb", Toast.LENGTH_SHORT).show();
+    }
     private void SongNames() {
 //        Song song = mSongs.get(currentIndex);
         imageView.setImageResource(song.getImageSong());
@@ -214,45 +214,45 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        mSeekBarTime.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                if (fromUser){
-//                    mMediaPlayer.seekTo(progress);
-//                    mSeekBarTime.setProgress(progress);
-//                }
-//                playerPosition.setText(convertFormat(mMediaPlayer.getCurrentPosition()));
-//            }
-//
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//        });
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                while (mMediaPlayer!= null){
-//                    try {
-//                        if(mMediaPlayer.isPlaying()){
-//                            Message message = new Message();
-//
-//                            message.what = mMediaPlayer.getCurrentPosition();
-//                            handler.sendMessage(message);
-//                            Thread.sleep(1000);
-//                        }
-//                    }catch (InterruptedException e){
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }).start();
-//    }
+        mSeekBarTime.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser){
+                    mMediaPlayer.seekTo(progress);
+                    mSeekBarTime.setProgress(progress);
+                }
+                playerPosition.setText(convertFormat(mMediaPlayer.getCurrentPosition()));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (mMediaPlayer!= null){
+                    try {
+                        if(mMediaPlayer.isPlaying()){
+                            Message message = new Message();
+
+                            message.what = mMediaPlayer.getCurrentPosition();
+                            handler.sendMessage(message);
+                            Thread.sleep(1000);
+                        }
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+    }
 
 
         @SuppressLint("Handle Leak")
@@ -265,4 +265,4 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-}
+
