@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     List<Song> mSongs;
     Song song;
 
-    TextView playerDuration,playerPosition;
+    TextView playerDuration, playerPosition;
     ImageView btFF, btRew;
 
 
@@ -51,14 +51,14 @@ public class MainActivity extends AppCompatActivity {
         imgXoay = findViewById(R.id.imgxoay);
 
 
-        playerDuration =findViewById(R.id.playerDuration);
-        playerPosition =findViewById(R.id.playerPosition);
+        playerDuration = findViewById(R.id.playerDuration);
+        playerPosition = findViewById(R.id.playerPosition);
         btFF = findViewById(R.id.bt_ff);
         btRew = findViewById(R.id.bt_rew);
 
-        Animation xoay = AnimationUtils.loadAnimation(this,R.anim.anim_quaydia);
-        Animation dungxoay = AnimationUtils.loadAnimation(this,R.anim.anim_dungquay);
-        Animation lacnhac = AnimationUtils.loadAnimation(this,R.anim.anim_laccaichuong);
+        Animation xoay = AnimationUtils.loadAnimation(this, R.anim.anim_quaydia);
+        Animation dungxoay = AnimationUtils.loadAnimation(this, R.anim.anim_dungquay);
+        Animation lacnhac = AnimationUtils.loadAnimation(this, R.anim.anim_laccaichuong);
 
         imageView.startAnimation(xoay);
         imgXoay.startAnimation(lacnhac);
@@ -66,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
 //        mSongs = (List<Song>) getIntent().getSerializableExtra("listMusic");
 //        Song song = (Song) getIntent().getSerializableExtra("song");
 //        currentIndex = getIntent().getIntExtra("index", 0);
-        song = new Song("Đen Đá Không Đường ","Amee ",R.drawable.anh7,R.raw.tinh_yeu_cao_thuong);
+        song = new Song("Đen Đá Không Đường ", "Amee ", R.drawable.anh7, R.raw.tinh_yeu_cao_thuong);
 
         if (song != null) {
-            if(mMediaPlayer != null){
+            if (mMediaPlayer != null) {
                 mMediaPlayer.stop();
             }
             imageView.setImageResource(song.getImageSong());
@@ -87,65 +87,64 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-//
-//        play.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(mMediaPlayer == null){ //
-//                    Toast.makeText(getApplicationContext(), "null", Toast.LENGTH_SHORT).show();
-//                }else{
-//                    mSeekBarTime.setMax(mMediaPlayer.getDuration());
-//                    if(mMediaPlayer!=null && mMediaPlayer.isPlaying()){
-//                        clickStopService();
-//                        mMediaPlayer.pause();
-//                        play.setImageResource(R.drawable.stop);
-//
-//                        //animation
-//                        imageView.startAnimation(dungxoay);
-//                    }else{
-//                        clickStartService();
-//                        mMediaPlayer.start();
-//                        play.setImageResource(R.drawable.play);
-//
-//                        //animation
-//                        imageView.startAnimation(xoay);
-//                    }
-//                    SongNames();
-//                }
-//
-//            }
-//
-//        });
+
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mMediaPlayer == null) { //
+                    Toast.makeText(getApplicationContext(), "null", Toast.LENGTH_SHORT).show();
+                } else {
+                    mSeekBarTime.setMax(mMediaPlayer.getDuration());
+                    if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
+                        clickStopService();
+                        mMediaPlayer.pause();
+                        play.setImageResource(R.drawable.stop);
+
+                        //animation
+                        imageView.startAnimation(dungxoay);
+                    } else {
+                        clickStartService();
+                        mMediaPlayer.start();
+                        play.setImageResource(R.drawable.play);
+
+                        //animation
+                        imageView.startAnimation(xoay);
+                    }
+                    SongNames();
+                }
+
+            }
+
+        });
 
 
-//
-//        prev.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(mMediaPlayer!=null){
-//                    play.setImageResource(R.drawable.play);
-//                }
-//                if(currentIndex > 0){
-//                    currentIndex--;
-//                }else{
-//                    currentIndex = mSongs.size()-1;
-//                }
-//                if (mMediaPlayer.isPlaying()){
-//                    mMediaPlayer.stop();
-//                }
-//
-//                clickStartService();
-//                mMediaPlayer = MediaPlayer.create(getApplicationContext(),mSongs.get(currentIndex).getResourece());
-//                mMediaPlayer.start();
-//                SongNames();
-//            }
-//        });
+        prev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mMediaPlayer != null) {
+                    play.setImageResource(R.drawable.play);
+                }
+                if (currentIndex > 0) {
+                    currentIndex--;
+                } else {
+                    currentIndex = mSongs.size() - 1;
+                }
+                if (mMediaPlayer.isPlaying()) {
+                    mMediaPlayer.stop();
+                }
+
+                clickStartService();
+                mMediaPlayer = MediaPlayer.create(getApplicationContext(), mSongs.get(currentIndex).getResourece());
+                mMediaPlayer.start();
+                SongNames();
+            }
+        });
         btRew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int currentPosition = mMediaPlayer.getCurrentPosition();
-                if(mMediaPlayer.isPlaying() && currentPosition > 5000){
-                    currentPosition = currentPosition-5000;
+                if (mMediaPlayer.isPlaying() && currentPosition > 5000) {
+                    currentPosition = currentPosition - 5000;
                     mMediaPlayer.seekTo(currentPosition);
 
                     playerPosition.setText(convertFormat(currentPosition));
@@ -157,8 +156,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int currentPosition = mMediaPlayer.getCurrentPosition();
                 int duration = mMediaPlayer.getDuration();
-                if(mMediaPlayer.isPlaying() && duration!= currentPosition){
-                    currentPosition = currentPosition+5000;
+                if (mMediaPlayer.isPlaying() && duration != currentPosition) {
+                    currentPosition = currentPosition + 5000;
                     mMediaPlayer.seekTo(currentPosition);
 
                     playerDuration.setText(convertFormat(mMediaPlayer.getDuration()));
@@ -167,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     private String convertFormat(int duration) {
         return String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(duration),
                 TimeUnit.MILLISECONDS.toSeconds(duration) -
@@ -174,24 +174,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-//    private void clickStartService() {
-//        Intent intent = new Intent(this, MyService.class);
-//        Bundle bundle = new Bundle();
-////
-////        Song song = mSongs.get(currentIndex);
-//        bundle.putSerializable("object_song",song);
-//        intent.putExtras(bundle);
+    private void clickStartService() {
+        Intent intent = new Intent(this, MyService.class);
+        Bundle bundle = new Bundle();
 //
-//        startService(intent);
-//    }
+//        Song song = mSongs.get(currentIndex);
+        bundle.putSerializable("object_song", song);
+        intent.putExtras(bundle);
 
-//    private void clickStopService() {
-//        Intent intent = new Intent(this, MyService.class);
-//        stopService(intent);
-//    }
+        startService(intent);
+    }
 
-//    private void sendActiontoServie(int action, Song song){
+    private void clickStopService() {
+        Intent intent = new Intent(this, MyService.class);
+        stopService(intent);
+    }
+
+    //    private void sendActiontoServie(int action, Song song){
 ////        Toast.makeText(this, "aaaaaaaaa", Toast.LENGTH_SHORT).show();
 //        Intent intent = new Intent(MainActivity.this, MyService.class);
 //        //lợi dụng hàm bài trước
@@ -200,21 +199,21 @@ public class MainActivity extends AppCompatActivity {
 //        startService(intent);
 ////        Toast.makeText(this, "bbbbbbbbbb", Toast.LENGTH_SHORT).show();
 //    }
-//    private void SongNames(){
-////        Song song = mSongs.get(currentIndex);
-//        imageView.setImageResource(song.getImageSong());
-//        songTitle.setText(song.getTitle());
-//        songSinger.setText(song.getSingle());
-//
-//        //seek bar duration
-//        mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-//            @Override
-//            public void onPrepared(MediaPlayer mp) {
-//                mSeekBarTime.setMax(mMediaPlayer.getDuration());
-//                mMediaPlayer.start();
-//            }
-//        });
-//
+    private void SongNames() {
+//        Song song = mSongs.get(currentIndex);
+        imageView.setImageResource(song.getImageSong());
+        songTitle.setText(song.getTitle());
+        songSinger.setText(song.getSingle());
+
+        //seek bar duration
+        mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mSeekBarTime.setMax(mMediaPlayer.getDuration());
+                mMediaPlayer.start();
+            }
+        });
+
 //        mSeekBarTime.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 //            @Override
 //            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -256,14 +255,14 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
-    @SuppressLint("Handle Leak")
-    Handler handler = new Handler () {
-        @Override
-        public void handleMessage (Message msg) {
-            mSeekBarTime.setProgress(msg.what);
-        }
-    };
+        @SuppressLint("Handle Leak")
+        Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                mSeekBarTime.setProgress(msg.what);
+            }
+        };
 
 
-
+    }
 }

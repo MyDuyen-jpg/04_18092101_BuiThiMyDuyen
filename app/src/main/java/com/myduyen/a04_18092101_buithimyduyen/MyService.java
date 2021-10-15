@@ -1,22 +1,22 @@
-//package com.myduyen.a04_18092101_buithimyduyen;
-//
-//
+package com.myduyen.a04_18092101_buithimyduyen;
+
+
 //import static com.myduyen.a04_18092101_buithimyduyen.MyAplication.CHANEL_ID;
-//import android.app.Notification;
-//import android.app.PendingIntent;
-//import android.app.Service;
-//import android.content.Intent;
-//import android.graphics.Bitmap;
-//import android.graphics.BitmapFactory;
-//import android.os.Bundle;
-//import android.os.IBinder;
-//import android.util.Log;
-//import android.widget.RemoteViews;
-//
-//import androidx.annotation.Nullable;
-//import androidx.core.app.NotificationCompat;
-//
-//public class MyService extends Service {
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.app.Service;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.util.Log;
+import android.widget.RemoteViews;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+
+public class MyService  {
 //    private Song mSong;
 //
 //
@@ -75,4 +75,4 @@
 //        super.onDestroy();
 //        Log.e("MY DUYEN","MyService onDestroy");
 //    }
-//}
+}
